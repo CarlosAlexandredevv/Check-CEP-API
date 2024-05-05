@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Form from './components/form/index';
+import Cep from './components/cep';
 
 const Image = styled.img`
   width: 350px;
@@ -19,6 +20,7 @@ function App() {
     <GridContainer>
       <Image src="public\mapBrazil.png" alt="" />
       <Form />
+      <Cep />
     </GridContainer>
   );
 }
