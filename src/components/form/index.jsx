@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
-import { Container, GridContainer, Label, Input, Button } from './style';
+import {
+  Container,
+  GridContainer,
+  Label,
+  Input,
+  Button,
+  ContainerCep,
+  UlList,
+} from './style';
 
 export function Form() {
   const [value, setValue] = useState('');
-  const [data, setData] = useState('');
+  const [data, setData] = useState(null);
 
   function handleChange(event) {
     const newValue = event.target.value;
@@ -17,7 +25,6 @@ export function Form() {
       .then((response) => response.json())
       .then((cepData) => {
         setData(cepData);
-        console.log(cepData.bairro, cepData.logradouro);
       });
   }
 
@@ -35,7 +42,18 @@ export function Form() {
         />
         <Button onClick={handleClick}>Consultar</Button>
       </Container>
-      <Container></Container>
+      <ContainerCep>
+        {data && (
+          <UlList>
+            <li>CEP: {data.cep || 'Dado não encontrado'}.</li>
+            <li>Logradouro: {data.logradouro || 'Dado não encontrado'}.</li>
+            <li>Complemento: {data.complemento || 'Dado não encontrado'}.</li>
+            <li>Bairro: {data.bairro || 'Dado não encontrado'}.</li>
+            <li>Uf: {data.uf || 'Dado não encontrado'}.</li>
+            <li>DDD: {data.ddd || 'Dado não encontrado'}.</li>
+          </UlList>
+        )}
+      </ContainerCep>
     </GridContainer>
   );
 }

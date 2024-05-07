@@ -4,8 +4,22 @@ import theme from '../../styles/theme';
 export const Container = styled.div`
   display: flex;
   width: 250px;
-  height: 250px;
+  height: 300px;
   background-color: ${theme.colors.container};
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 25px;
+  border-radius: 12px;
+  box-shadow: 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
+`;
+
+export const ContainerCep = styled.div`
+  display: flex;
+  width: 250px;
+  height: 300px;
+  border: 15px solid ${theme.colors.container};
+  background-color: ${theme.colors.white};
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -61,4 +75,8 @@ export const Button = styled.button`
     background-color: ${theme.colors.white};
     color: ${theme.colors.bg};
   }
+`;
+
+export const UlList = styled.ul`
+  list-style: none;
 `;
