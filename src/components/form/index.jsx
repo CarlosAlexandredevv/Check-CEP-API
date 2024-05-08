@@ -7,11 +7,14 @@ import {
   Button,
   ContainerCep,
   UlList,
+  SpanS,
+  ButtonClean,
 } from './style';
 
 export function Form() {
   const [value, setValue] = useState('');
   const [data, setData] = useState(null);
+  const [showClearButton, setShowClearButton] = useState(false);
 
   function handleChange(event) {
     const newValue = event.target.value;
@@ -25,7 +28,14 @@ export function Form() {
       .then((response) => response.json())
       .then((cepData) => {
         setData(cepData);
+        setShowClearButton(true);
       });
+  }
+
+  function handleClean() {
+    setData(null);
+    setValue('');
+    setShowClearButton(false);
   }
 
   return (
@@ -45,13 +55,32 @@ export function Form() {
       <ContainerCep>
         {data && (
           <UlList>
-            <li>CEP: {data.cep || 'Dado não encontrado'}.</li>
-            <li>Logradouro: {data.logradouro || 'Dado não encontrado'}.</li>
-            <li>Complemento: {data.complemento || 'Dado não encontrado'}.</li>
-            <li>Bairro: {data.bairro || 'Dado não encontrado'}.</li>
-            <li>Uf: {data.uf || 'Dado não encontrado'}.</li>
-            <li>DDD: {data.ddd || 'Dado não encontrado'}.</li>
+            <li>
+              <SpanS>CEP: </SpanS>
+              {data.cep || 'Dado não encontrado'}.
+            </li>
+            <li>
+              <SpanS>Logradouro: </SpanS>
+              {data.logradouro || 'Dado não encontrado'}.
+            </li>
+            <li>
+              <SpanS>Complemento: </SpanS>{' '}
+              {data.complemento || 'Dado não encontrado'}.
+            </li>
+            <li>
+              <SpanS>Bairro: </SpanS> {data.bairro || 'Dado não encontrado'}.
+            </li>
+            <li>
+              <SpanS>Uf:</SpanS> {data.uf || 'Dado não encontrado'}.
+            </li>
+            <li>
+              <SpanS>DDD: </SpanS>
+              {data.ddd || 'Dado não encontrado'}.
+            </li>
           </UlList>
+        )}
+        {showClearButton && (
+          <ButtonClean onClick={handleClean}>Limpar</ButtonClean>
         )}
       </ContainerCep>
     </GridContainer>
