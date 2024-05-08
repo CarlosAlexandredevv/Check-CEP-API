@@ -28,7 +28,7 @@ const GridContainer = styled.div`
 function App() {
   return (
     <GridContainer>
-      <Image src="public\mapBrazil.png" alt="Map Brazil" />
+      <Image src="./public\mapBrazil.png" alt="Map Brazil" />
       <Form />
     </GridContainer>
   );
